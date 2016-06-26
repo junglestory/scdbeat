@@ -10,6 +10,31 @@
         "@timestamp": {
           "type": "date"
         },
+        "DOCID": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "alias": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "attachcon": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "attachext": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "attachname": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
         "beat": {
           "properties": {
             "hostname": {
@@ -24,10 +49,44 @@
             }
           }
         },
+        "content": {
+          "index": "analyzed",
+          "norms": {
+            "enabled": false
+          },
+          "type": "string"
+        },
         "counter": {
           "type": "integer"
         },
+        "date": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "filelink": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "link": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "title": {
+          "index": "analyzed",
+          "norms": {
+            "enabled": false
+          },
+          "type": "string"
+        },
         "type": {
+          "ignore_above": 1024,
+          "index": "not_analyzed",
+          "type": "string"
+        },
+        "writer": {
           "ignore_above": 1024,
           "index": "not_analyzed",
           "type": "string"

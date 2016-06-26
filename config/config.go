@@ -9,4 +9,5 @@ type Config struct {
 
 type ScdbeatConfig struct {
 	Period string `config:"period"`
+	Path   string `config:"path"` //path 환경변수 값 추가.
 }

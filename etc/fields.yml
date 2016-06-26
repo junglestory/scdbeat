@@ -40,7 +40,29 @@ scdbeat:
       required: true
       description: >
         PLEASE UPDATE DOCUMENTATION
+    #lsbeat 에서 추가된 필드들.
+    - name: DOCID
+      type: keyword
+    - name: date
+      type: keyword
+    - name: title
+      type: text
+    - name: content
+      type: text
+    - name: writer
+      type: keyword
+    - name: filelink
+      type: keyword
+    - name: link
+      type: keyword
+    - name: attachcon
+      type: keyword
+    - name: attachext
+      type: keyword
+    - name: attachname
+      type: keyword
+    - name: alias
+      type: keyword
 
 sections:
-  - ["env", "Common"]
   - ["scdbeat", "Scdbeat"]
