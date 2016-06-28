@@ -97,14 +97,22 @@ func (bt *Scdbeat) Run(b *beat.Beat) error {
 	}
 }
 
-func check(e error) {
-	if e != nil {
-		panic(e)
+func check(err error) {
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
 }
 
 func readScd(dirFile string, bt *Scdbeat, b *beat.Beat, counter int) {
-	files, _ := ioutil.ReadDir(dirFile)
+	var indexDir string = dirFile + "/index"
+	var backupDir string = dirFile + "/backup"
+
+	files, _ := ioutil.ReadDir(indexDir)
+
+	if(!exists(backupDir)) {
+		makeDir(backupDir)
+	}
 
 	for _, f := range files {
 		pos := strings.Index(f.Name(), "-I-C.SCD")
@@ -140,6 +148,8 @@ func readScd(dirFile string, bt *Scdbeat, b *beat.Beat, counter int) {
 
 			sendScd(scdMap, b, bt, counter);
 		}
+
+		moveFile(indexDir, backupDir, f.Name())
 	}
 }
 
@@ -159,6 +169,27 @@ func sendScd (scdMap map[string]string, b *beat.Beat, bt *Scdbeat, counter int) 
 	}
 
 	bt.client.PublishEvent(event) //elasticsearch 로 데이터 전송.
+}
+
+
+func moveFile(indexDir string, backupDir string, fileName string) {
+	err :=  os.Rename(indexDir + "/" + fileName , backupDir + "/" + fileName)
+	check(err)
+}
+
+// file or directory exists.
+func exists(path string) bool {
+	if _, err := os.Stat(path); err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
+	}
+	return true
+}
+
+func makeDir(path string) {
+	err := os.MkdirAll(path,0711)
+	check(err)
 }
 
 func (bt *Scdbeat) Cleanup(b *beat.Beat) error {

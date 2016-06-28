@@ -5,7 +5,7 @@
 scdbeat:
   # Defines how often an event is sent to the output
   period: 10s
-  path: "/Users/baltigo/workspace/data/normal/sample_bbs/scd/index"
+  path: "/Users/baltigo/workspace/data/normal/sample_bbs/scd"
 ###############################################################################
 ############################# Libbeat Config ##################################
 # Base config file used by all other beats for using libbeat features
