@@ -39,7 +39,7 @@ output:
 
     # Optional index name. The default is "scdbeat" and generates
     # [scdbeat-]YYYY.MM.DD keys.
-    #index: "scdbeat"
+    index: "sample_bbs"
 
     # A template is used to set the mapping in Elasticsearch
     # By default template loading is enabled and the template is loaded.

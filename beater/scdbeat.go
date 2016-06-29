@@ -149,12 +149,15 @@ func readScd(dirFile string, bt *Scdbeat, b *beat.Beat, counter int) {
 			sendScd(scdMap, b, bt, counter);
 		}
 
-		moveFile(indexDir, backupDir, f.Name())
+		//moveFile(indexDir, backupDir, f.Name())
 	}
 }
 
 func sendScd (scdMap map[string]string, b *beat.Beat, bt *Scdbeat, counter int) {
 	event := common.MapStr{
+		"@timestamp":  common.Time(time.Now()),
+		"type":        b.Name,
+		"counter":     counter,
 		"DOCID":     scdMap["DOCID"],
 		"date": scdMap["Date"],
 		"title":    scdMap["TITLE"],
